@@ -1,11 +1,8 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using System.Collections.Generic;
+﻿using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 
-namespace AlpineSkiHouse
+namespace AlpineSkiHouse.Web
 {
     public class Program
     {

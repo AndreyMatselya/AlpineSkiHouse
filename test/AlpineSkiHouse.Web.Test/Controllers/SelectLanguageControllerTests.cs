@@ -1,14 +1,14 @@
-﻿using AlpineSkiHouse.Web.Controllers;
+﻿using System.Globalization;
+using AlpineSkiHouse.Web.Controllers;
 using Microsoft.AspNetCore.Builder;
-using System.Globalization;
-using Xunit;
-using Microsoft.Extensions.Options;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Localization;
-using Moq;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using Moq;
+using Xunit;
 
-namespace AlpineSkiHouse.Web.Tests.Controllers
+namespace AlpineSkiHouse.Web.Test.Controllers
 {
     public class SelectLanguageControllerTests
     {

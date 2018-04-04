@@ -1,8 +1,6 @@
 using System;
-using System.Linq;
-using System.Collections.Generic;
 
-namespace AlpineSkiHouse.Services
+namespace AlpineSkiHouse.Web.Services
 {
     public interface IDateService
     {

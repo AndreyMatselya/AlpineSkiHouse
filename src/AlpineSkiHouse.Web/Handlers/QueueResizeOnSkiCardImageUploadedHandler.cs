@@ -1,19 +1,16 @@
-﻿using AlpineSkiHouse.Configuration.Models;
-using AlpineSkiHouse.Events;
+﻿using System.Threading;
+using System.Threading.Tasks;
+using AlpineSkiHouse.Web.Configuration.Models;
+using AlpineSkiHouse.Web.Events;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Queue;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace AlpineSkiHouse.Handlers
+namespace AlpineSkiHouse.Web.Handlers
 {
-    public class QueueResizeOnSkiCardImageUploadedHandler : IAsyncNotificationHandler<SkiCardImageUploaded>
+    public class QueueResizeOnSkiCardImageUploadedHandler : INotificationHandler<SkiCardImageUploaded>
     {
         private readonly ILogger<QueueResizeOnSkiCardImageUploadedHandler> _logger;
         private readonly AzureStorageSettings _storageSettings;
@@ -24,7 +21,7 @@ namespace AlpineSkiHouse.Handlers
             _storageSettings = storageSettings.Value;
         }
 
-        public async Task Handle(SkiCardImageUploaded notification)
+        public async Task Handle(SkiCardImageUploaded notification, CancellationToken cancellationToken)
         {
             // prepare the queue client
             var storageAccount = CloudStorageAccount.Parse(_storageSettings.AzureStorageConnectionString);
@@ -35,7 +32,7 @@ namespace AlpineSkiHouse.Handlers
             // prepare and send the message to the queue
             var message = new CloudQueueMessage(notification.FileName);
             await imageQueue.AddMessageAsync(message);
-
+            
             _logger.LogInformation($"Published image uploaded message for {notification.FileName} to queue.");
         }
     }

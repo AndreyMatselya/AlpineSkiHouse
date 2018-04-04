@@ -3,9 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using AlpineSkiHouse.Data;
 
-namespace AlpineSkiHouse.Web.Migrations.SkiCard
+namespace AlpineSkiHouse.Web.Data.Migrations
 {
     [DbContext(typeof(SkiCardContext))]
     [Migration("20160625012754_RequiredSkiCardApplicationUserId")]

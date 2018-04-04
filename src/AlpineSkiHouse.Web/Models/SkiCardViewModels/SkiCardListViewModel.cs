@@ -1,4 +1,4 @@
-﻿namespace AlpineSkiHouse.Models.SkiCardViewModels
+﻿namespace AlpineSkiHouse.Web.Models.SkiCardViewModels
 {
     public class SkiCardListViewModel
     {

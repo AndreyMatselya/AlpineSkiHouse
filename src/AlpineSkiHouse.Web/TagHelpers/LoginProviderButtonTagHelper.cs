@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http.Authentication;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace AlpineSkiHouse.TagHelpers
+namespace AlpineSkiHouse.Web.TagHelpers
 {
     [HtmlTargetElement("button", Attributes = "ski-login-provider")]
     public class LoginProviderButtonTagHelper : TagHelper

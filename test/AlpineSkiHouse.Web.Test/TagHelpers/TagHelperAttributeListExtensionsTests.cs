@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace AlpineSkiHouse.Web.Tests.TagHelpers
+﻿namespace AlpineSkiHouse.Web.Test.TagHelpers
 {
     public class TagHelperAttributeListExtensionsTests
     {

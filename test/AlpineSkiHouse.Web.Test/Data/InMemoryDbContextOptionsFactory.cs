@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AlpineSkiHouse.Web.Tests.Data
+namespace AlpineSkiHouse.Web.Test.Data
 {
 public static class InMemoryDbContextOptionsFactory
 {

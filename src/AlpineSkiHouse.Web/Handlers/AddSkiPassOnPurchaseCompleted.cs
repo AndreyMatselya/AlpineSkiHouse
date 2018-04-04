@@ -1,12 +1,13 @@
-﻿using AlpineSkiHouse.Data;
-using AlpineSkiHouse.Events;
-using AlpineSkiHouse.Models;
-using AlpineSkiHouse.Services;
+﻿using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+using AlpineSkiHouse.Web.Data;
+using AlpineSkiHouse.Web.Events;
+using AlpineSkiHouse.Web.Models;
+using AlpineSkiHouse.Web.Services;
 using MediatR;
-using System;
-using System.Collections.Generic;
 
-namespace AlpineSkiHouse.Handlers
+namespace AlpineSkiHouse.Web.Handlers
 {
     public class AddSkiPassOnPurchaseCompleted : INotificationHandler<PurchaseCompleted>
     {
@@ -21,7 +22,7 @@ namespace AlpineSkiHouse.Handlers
             _bus = bus;
         }
 
-        public void Handle(PurchaseCompleted notification)
+        public async Task Handle(PurchaseCompleted notification, CancellationToken cancellationToken)
         {
             var newPasses = new List<Pass>();
             foreach (var passPurchase in notification.Passes)
@@ -49,7 +50,6 @@ namespace AlpineSkiHouse.Handlers
                 };
                 _bus.Publish(passAddedEvent);
             }
-
         }
     }
 }

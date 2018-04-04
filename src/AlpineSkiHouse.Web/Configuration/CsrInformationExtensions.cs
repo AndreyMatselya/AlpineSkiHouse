@@ -1,9 +1,9 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.FileProviders;
-using System;
+﻿using System;
 using System.IO;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.FileProviders;
 
-namespace AlpineSkiHouse.Configuration
+namespace AlpineSkiHouse.Web.Configuration
 {
     public static class CsrInformationExtensions
     {

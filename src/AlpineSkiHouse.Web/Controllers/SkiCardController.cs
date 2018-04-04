@@ -3,15 +3,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
-using AlpineSkiHouse.Data;
-using AlpineSkiHouse.Models.SkiCardViewModels;
-using AlpineSkiHouse.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
-using AlpineSkiHouse.Security;
 using Microsoft.Extensions.Logging;
-using AlpineSkiHouse.Services;
-using Microsoft.AspNetCore.Http;
+using AlpineSkiHouse.Web.Data;
+using AlpineSkiHouse.Web.Models;
+using AlpineSkiHouse.Web.Models.SkiCardViewModels;
+using AlpineSkiHouse.Web.Security;
+using AlpineSkiHouse.Web.Services;
 
 namespace AlpineSkiHouse.Web.Controllers
 {
@@ -161,14 +160,15 @@ namespace AlpineSkiHouse.Web.Controllers
                 CardHolderPhoneNumber = skiCard.CardHolderPhoneNumber
             };
 
-            if (await _authorizationService.AuthorizeAsync(User, skiCard, new EditSkiCardAuthorizationRequirement()))
+            var authorizationResult =
+                await _authorizationService.AuthorizeAsync(User, skiCard, new EditSkiCardAuthorizationRequirement());
+
+            if (authorizationResult.Succeeded)
             {
                 return View(skiCardViewModel);
             }
-            else
-            {
-                return new ChallengeResult();
-            }
+
+            return new ChallengeResult();
         }
 
         // POST: SkiCard/Edit/5
@@ -185,7 +185,7 @@ namespace AlpineSkiHouse.Web.Controllers
                 {
                     return NotFound();
                 }
-                else if (await _authorizationService.AuthorizeAsync(User, skiCard, new EditSkiCardAuthorizationRequirement()))
+                else if ((await _authorizationService.AuthorizeAsync(User, skiCard, new EditSkiCardAuthorizationRequirement())).Succeeded)
                 {
                     skiCard.CardHolderFirstName = viewModel.CardHolderFirstName;
                     skiCard.CardHolderLastName = viewModel.CardHolderLastName;

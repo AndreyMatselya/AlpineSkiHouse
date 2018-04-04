@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace AlpineSkiHouse.Events
+namespace AlpineSkiHouse.Web.Events
 { 
     public class PassActivated : INotification
     {

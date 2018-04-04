@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace AlpineSkiHouse.TagHelpers
+namespace AlpineSkiHouse.Web.TagHelpers
 {
     public static class TagHelperAttributeListExtensions
     {

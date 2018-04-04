@@ -1,17 +1,13 @@
-﻿using AlpineSkiHouse.Configuration.Models;
-using AlpineSkiHouse.Events;
-using MediatR;
+﻿using MediatR;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.WindowsAzure.Storage;
-using Microsoft.WindowsAzure.Storage.Blob;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
+using AlpineSkiHouse.Web.Configuration.Models;
+using AlpineSkiHouse.Web.Events;
 
-namespace AlpineSkiHouse.Services
+namespace AlpineSkiHouse.Web.Services
 {
     public class BlobFileUploadService : IBlobFileUploadService
     {
@@ -40,7 +36,7 @@ namespace AlpineSkiHouse.Services
             _logger.LogInformation($"Ski card image uploaded as {targetFilename}");
 
             // publish event that image was uploaded
-            await _bus.PublishAsync(new SkiCardImageUploaded { FileName = targetFilename });
+            await _bus.Publish(new SkiCardImageUploaded { FileName = targetFilename });
             return blob?.Uri.ToString();
         }
 

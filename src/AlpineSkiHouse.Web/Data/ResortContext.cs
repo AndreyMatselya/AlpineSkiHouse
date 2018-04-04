@@ -1,11 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AlpineSkiHouse.Models;
+﻿using AlpineSkiHouse.Web.Models;
+using Microsoft.EntityFrameworkCore;
 
-namespace AlpineSkiHouse.Data
+namespace AlpineSkiHouse.Web.Data
 {
     public class ResortContext : DbContext
     {

@@ -1,11 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Collections.Generic;
-using MediatR;
-using AlpineSkiHouse.Data;
-using AlpineSkiHouse.Models;
-using AlpineSkiHouse.Services;
-using AlpineSkiHouse.Security;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Hosting;
@@ -14,20 +7,22 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using System.Reflection;
-using AlpineSkiHouse.Configuration;
 using Serilog;
-using Serilog.Filters;
-using Serilog.Core;
-using AlpineSkiHouse.Configuration.Models;
 using Microsoft.Extensions.Options;
 using System.Globalization;
+using AlpineSkiHouse.Web.Configuration.Models;
+using AlpineSkiHouse.Web.Conventions;
 using Microsoft.AspNetCore.Localization;
-using Microsoft.AspNetCore.Mvc.Razor;
-using AlpineSkiHouse.Conventions;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using AlpineSkiHouse.Web.Data;
+using AlpineSkiHouse.Web.Models;
+using AlpineSkiHouse.Web.Security;
+using AlpineSkiHouse.Web.Services;
 
-namespace AlpineSkiHouse
+namespace AlpineSkiHouse.Web
 {
     public class Startup
     {
@@ -114,6 +109,19 @@ namespace AlpineSkiHouse
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(o => o.LoginPath = new PathString("/login"))
+                .AddFacebook(o =>
+                {
+                    o.AppId = Configuration["Authentication:Facebook:AppId"];
+                    o.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
+                })
+                .AddTwitter(o =>
+                {
+                    o.ConsumerKey = Configuration["Authentication:Twitter:ConsumerKey"];
+                    o.ConsumerSecret = Configuration["Authentication:Twitter:ConsumerSecret"];
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -163,26 +171,6 @@ namespace AlpineSkiHouse
 
             app.UseStaticFiles();
 
-            app.UseIdentity();
-
-            // Add external authentication middleware below. To configure them please see http://go.microsoft.com/fwlink/?LinkID=532715
-            if (Configuration["Authentication:Facebook:AppId"] == null ||
-                Configuration["Authentication:Facebook:AppSecret"] == null ||
-                Configuration["Authentication:Twitter:ConsumerKey"] == null ||
-                Configuration["Authentication:Twitter:ConsumerSecret"] == null)
-                throw new KeyNotFoundException("A configuration value is missing for authentication against Facebook and Twitter. While you don't need to get tokens for these you do need to set up your user secrets as described in the readme.");
-            app.UseFacebookAuthentication(new FacebookOptions
-            {
-                AppId = Configuration["Authentication:Facebook:AppId"],
-                AppSecret = Configuration["Authentication:Facebook:AppSecret"]
-            });
-
-            app.UseTwitterAuthentication(new TwitterOptions
-            {
-                ConsumerKey = Configuration["Authentication:Twitter:ConsumerKey"],
-                ConsumerSecret = Configuration["Authentication:Twitter:ConsumerSecret"]
-            });
-            
             app.UseRequestLocalization(requestLocalizationOptions.Value);
 
             app.UseMvc(routes =>

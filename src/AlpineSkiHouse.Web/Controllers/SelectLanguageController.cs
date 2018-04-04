@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using System;
-using System.Linq;
 
 namespace AlpineSkiHouse.Web.Controllers
 {

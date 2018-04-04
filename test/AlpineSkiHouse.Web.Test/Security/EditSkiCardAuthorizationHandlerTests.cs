@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace AlpineSkiHouse.Web.Tests.Security
+﻿namespace AlpineSkiHouse.Web.Test.Security
 {
     public class EditSkiCardAuthorizationHandlerTests
     {

@@ -1,12 +1,8 @@
-﻿using AlpineSkiHouse.Configuration;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using AlpineSkiHouse.Web.Configuration.Models;
 
-namespace AlpineSkiHouse.Services
+namespace AlpineSkiHouse.Web.Services
 {
     public class CsrInformationService : ICsrInformationService
     {

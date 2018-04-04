@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 
-namespace AlpineSkiHouse.Security
+namespace AlpineSkiHouse.Web.Security
 {
     public class EditSkiCardAuthorizationRequirement : IAuthorizationRequirement
     {

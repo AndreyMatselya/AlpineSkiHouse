@@ -1,14 +1,12 @@
-﻿using AlpineSkiHouse.Data;
-using AlpineSkiHouse.Models;
-using AlpineSkiHouse.Models.SkiCardViewModels;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using AlpineSkiHouse.Web.Data;
+using AlpineSkiHouse.Web.Models;
+using AlpineSkiHouse.Web.Models.SkiCardViewModels;
 
 namespace AlpineSkiHouse.Web.ViewComponents
 {

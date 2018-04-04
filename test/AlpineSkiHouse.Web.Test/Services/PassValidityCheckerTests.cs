@@ -1,16 +1,13 @@
-﻿using AlpineSkiHouse.Data;
-using AlpineSkiHouse.Models;
-using AlpineSkiHouse.Services;
-using AlpineSkiHouse.Web.Services;
-using AlpineSkiHouse.Web.Tests.Data;
-using Moq;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using AlpineSkiHouse.Web.Data;
+using AlpineSkiHouse.Web.Models;
+using AlpineSkiHouse.Web.Services;
+using AlpineSkiHouse.Web.Test.Data;
+using Moq;
 using Xunit;
 
-namespace AlpineSkiHouse.Web.Tests.Services
+namespace AlpineSkiHouse.Web.Test.Services
 {
     public class PassValidityCheckerTests
     {

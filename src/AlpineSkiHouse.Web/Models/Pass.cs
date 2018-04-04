@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace AlpineSkiHouse.Models
+namespace AlpineSkiHouse.Web.Models
 {
     public class Pass
     {

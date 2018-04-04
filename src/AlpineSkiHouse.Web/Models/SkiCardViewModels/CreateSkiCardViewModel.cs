@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Http;
 
-namespace AlpineSkiHouse.Models.SkiCardViewModels
+namespace AlpineSkiHouse.Web.Models.SkiCardViewModels
 {
     public class CreateSkiCardViewModel
     {

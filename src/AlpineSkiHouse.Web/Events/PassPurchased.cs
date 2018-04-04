@@ -1,4 +1,4 @@
-﻿namespace AlpineSkiHouse.Events
+﻿namespace AlpineSkiHouse.Web.Events
 {
     public class PassPurchased
     {

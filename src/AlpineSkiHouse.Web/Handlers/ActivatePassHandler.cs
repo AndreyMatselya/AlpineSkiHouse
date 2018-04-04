@@ -1,7 +1,9 @@
-﻿using AlpineSkiHouse.Data;
-using AlpineSkiHouse.Events;
-using AlpineSkiHouse.Models;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using AlpineSkiHouse.Web.Command;
+using AlpineSkiHouse.Web.Data;
+using AlpineSkiHouse.Web.Events;
+using AlpineSkiHouse.Web.Models;
 using MediatR;
 
 namespace AlpineSkiHouse.Web.Handlers
@@ -17,7 +19,7 @@ namespace AlpineSkiHouse.Web.Handlers
             _mediator = mediator;
         }
 
-        public int Handle(ActivatePass message)
+        public Task<int> Handle(ActivatePass message, CancellationToken cancellationToken)
         {
             PassActivation activation = new PassActivation
             {
@@ -29,7 +31,7 @@ namespace AlpineSkiHouse.Web.Handlers
 
             _mediator.Publish(new PassActivated { PassActivationId = activation.Id });
 
-            return activation.Id;
+            return Task.FromResult(activation.Id);
         }
     }
 }

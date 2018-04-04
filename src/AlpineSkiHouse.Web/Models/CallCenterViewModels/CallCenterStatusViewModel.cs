@@ -1,4 +1,4 @@
-﻿namespace AlpineSkiHouse.Models.CallCenterViewModels
+﻿namespace AlpineSkiHouse.Web.Models.CallCenterViewModels
 {
     public class CallCenterStatusViewModel
     {        

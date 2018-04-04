@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace AlpineSkiHouse.Data.Migrations
+namespace AlpineSkiHouse.Web.Data.Migrations
 {
     public partial class AddNamePropertiesToApplicationUser : Migration
     {

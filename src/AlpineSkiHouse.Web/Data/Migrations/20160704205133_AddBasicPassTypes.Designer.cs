@@ -3,9 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using AlpineSkiHouse.Data;
 
-namespace AlpineSkiHouse.Web.Migrations
+namespace AlpineSkiHouse.Web.Data.Migrations
 {
     [DbContext(typeof(PassTypeContext))]
     [Migration("20160704205133_AddBasicPassTypes")]

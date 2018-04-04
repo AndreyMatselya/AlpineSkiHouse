@@ -1,11 +1,7 @@
-﻿using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.IO;
+﻿using System.IO;
+using Microsoft.Extensions.Configuration;
 
-namespace AlpineSkiHouse.Configuration
+namespace AlpineSkiHouse.Web.Configuration
 {
     public class CsrInformationConfigurationProvider : FileConfigurationProvider
     {

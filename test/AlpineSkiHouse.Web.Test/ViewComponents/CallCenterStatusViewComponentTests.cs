@@ -1,10 +1,10 @@
-﻿using Xunit;
-using AlpineSkiHouse.ViewComponents;
-using Moq;
-using AlpineSkiHouse.Services;
+﻿using AlpineSkiHouse.Web.Services;
+using AlpineSkiHouse.Web.ViewComponents;
 using Microsoft.AspNetCore.Mvc.ViewComponents;
+using Moq;
+using Xunit;
 
-namespace AlpineSkiHouse.Web.Tests.ViewComponents
+namespace AlpineSkiHouse.Web.Test.ViewComponents
 {
     public class CallCenterStatusViewComponentTests
     {

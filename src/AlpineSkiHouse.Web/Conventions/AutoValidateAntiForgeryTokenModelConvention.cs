@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Linq;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
-using System.Linq;
 
-namespace AlpineSkiHouse.Conventions
+namespace AlpineSkiHouse.Web.Conventions
 {
     /// <summary>
     /// A custom convention that automatically adds the ValidateAntiForgeryToken filter

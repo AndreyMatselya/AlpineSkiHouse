@@ -1,12 +1,12 @@
-﻿using AlpineSkiHouse.Configuration;
-using AlpineSkiHouse.Services;
+﻿using System.Collections.Generic;
+using AlpineSkiHouse.Web.Configuration.Models;
+using AlpineSkiHouse.Web.Services;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Moq;
-using System.Collections.Generic;
 using Xunit;
 
-namespace AlpineSkiHouse.Web.Tests.Services
+namespace AlpineSkiHouse.Web.Test.Services
 {
 public class CsrInformationServiceTests
 {

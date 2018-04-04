@@ -1,16 +1,17 @@
-﻿using AlpineSkiHouse.Data;
-using AlpineSkiHouse.Events;
-using AlpineSkiHouse.Web.Handlers;
-using AlpineSkiHouse.Services;
+﻿using System;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using AlpineSkiHouse.Web.Command;
-using AlpineSkiHouse.Web.Tests.Data;
+using AlpineSkiHouse.Web.Data;
+using AlpineSkiHouse.Web.Events;
+using AlpineSkiHouse.Web.Handlers;
+using AlpineSkiHouse.Web.Test.Data;
 using MediatR;
 using Moq;
-using System;
-using System.Linq;
 using Xunit;
 
-namespace AlpineSkiHouse.Web.Tests.Handlers
+namespace AlpineSkiHouse.Web.Test.Handlers
 {
     public class ActivatePassHandlerTests
     {
@@ -36,7 +37,7 @@ namespace AlpineSkiHouse.Web.Tests.Handlers
                     Mock<IMediator> mediatorMock = new Mock<IMediator>();
 
                     var sut = new ActivatePassHandler(context, mediatorMock.Object);
-                    sut.Handle(activatePass);
+                    sut.Handle(activatePass, CancellationToken.None);
 
                     Assert.Equal(1, context.PassActivations.Count());
                     var passActivateThatWasAdded = context.PassActivations.Single();
@@ -46,16 +47,16 @@ namespace AlpineSkiHouse.Web.Tests.Handlers
             }
 
             [Fact]
-            public void The_pass_activated_event_is_raised()
+            public async Task The_pass_activated_event_is_raised()
             {
                 using (PassContext context = GetContext())
                 {
                     Mock<IMediator> mediatorMock = new Mock<IMediator>();
 
                     var sut = new ActivatePassHandler(context, mediatorMock.Object);
-                    var activationId = sut.Handle(activatePass);
+                    var activationId = await sut.Handle(activatePass, CancellationToken.None);
 
-                    mediatorMock.Verify(m => m.Publish(It.Is<PassActivated>(c => c.PassActivationId == activationId)));
+                    mediatorMock.Verify(m => m.Publish(It.Is<PassActivated>(c => c.PassActivationId == activationId), It.IsAny<CancellationToken>()));
                 }
             }
         }

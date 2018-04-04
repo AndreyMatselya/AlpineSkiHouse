@@ -1,9 +1,6 @@
-﻿using AlpineSkiHouse.Models;
-using MediatR;
+﻿using MediatR;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using AlpineSkiHouse.Web.Models;
 
 namespace AlpineSkiHouse.Web.Queries
 {

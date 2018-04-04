@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace AlpineSkiHouse.Events
+namespace AlpineSkiHouse.Web.Events
 {
     /// <summary>
     /// An event notification that occurs when a scan has occurred

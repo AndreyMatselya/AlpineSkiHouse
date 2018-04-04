@@ -1,24 +1,23 @@
-﻿using AlpineSkiHouse.Data;
-using AlpineSkiHouse.Models;
-using AlpineSkiHouse.Models.SkiCardViewModels;
-using AlpineSkiHouse.Security;
-using AlpineSkiHouse.Services;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
 using AlpineSkiHouse.Web.Controllers;
-using AlpineSkiHouse.Web.Tests.Data;
+using AlpineSkiHouse.Web.Data;
+using AlpineSkiHouse.Web.Models;
+using AlpineSkiHouse.Web.Models.SkiCardViewModels;
+using AlpineSkiHouse.Web.Security;
+using AlpineSkiHouse.Web.Services;
+using AlpineSkiHouse.Web.Test.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
-using Serilog;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
 using Xunit;
 
-namespace AlpineSkiHouse.Web.Tests.Controllers
+namespace AlpineSkiHouse.Web.Test.Controllers
 {
     public class SkiCardControllerTests
     {
@@ -102,7 +101,7 @@ namespace AlpineSkiHouse.Web.Tests.Controllers
                               _skiCard,
                               It.Is<IEnumerable<IAuthorizationRequirement>>(
                                   r => r.Count() == 1 && r.First() is EditSkiCardAuthorizationRequirement)))
-                    .Returns(Task.FromResult(false));
+                    .Returns(Task.FromResult(AuthorizationResult.Failed()));
 
                 var result = await controller.Edit(new EditSkiCardViewModel
                 {

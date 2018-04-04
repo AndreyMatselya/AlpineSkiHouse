@@ -3,9 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using AlpineSkiHouse.Data;
 
-namespace AlpineSkiHouse.Web.Migrations.PassType
+namespace AlpineSkiHouse.Web.Data.Migrations
 {
     [DbContext(typeof(PassTypeContext))]
     [Migration("20160708112240_AddPricesAndMaxActivations")]

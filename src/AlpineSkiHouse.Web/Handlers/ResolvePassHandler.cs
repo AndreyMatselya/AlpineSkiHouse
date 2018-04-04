@@ -1,12 +1,11 @@
-﻿using AlpineSkiHouse.Data;
-using AlpineSkiHouse.Models;
-using AlpineSkiHouse.Web.Queries;
+﻿using AlpineSkiHouse.Web.Queries;
 using AlpineSkiHouse.Web.Services;
 using MediatR;
-using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
+using AlpineSkiHouse.Web.Data;
+using AlpineSkiHouse.Web.Models;
 
 namespace AlpineSkiHouse.Web.Handlers
 {
@@ -21,17 +20,17 @@ namespace AlpineSkiHouse.Web.Handlers
             _validator = validator;
         }
 
-        public Pass Handle(ResolvePass message)
+        public Task<Pass> Handle(ResolvePass message, CancellationToken cancellationToken)
         {
             var passes = _context.Passes.Where(p => p.CardId == message.CardId);
 
             foreach (var pass in passes)
             {
                 if (_validator.IsValid(pass.Id))
-                    return pass;
+                    return Task.FromResult(pass);
             }
 
-            return null;
+            return Task.FromResult<Pass>(null);
         }
 
     }

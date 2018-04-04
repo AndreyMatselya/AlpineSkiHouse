@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AlpineSkiHouse.Web.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using AlpineSkiHouse.Models;
 
-namespace AlpineSkiHouse.Data
+namespace AlpineSkiHouse.Web.Data
 {
     /// <summary>
     /// Information related to application user profiles, user roles, user claims and user tokens

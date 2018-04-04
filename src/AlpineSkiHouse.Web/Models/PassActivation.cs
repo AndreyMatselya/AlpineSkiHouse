@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace AlpineSkiHouse.Models
+﻿namespace AlpineSkiHouse.Web.Models
 {
     public class PassActivation
     {

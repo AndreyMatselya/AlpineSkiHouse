@@ -1,17 +1,15 @@
-﻿using AlpineSkiHouse.Data;
-using AlpineSkiHouse.Models;
-using AlpineSkiHouse.Services;
-using AlpineSkiHouse.Web.Handlers;
-using AlpineSkiHouse.Web.Services;
-using AlpineSkiHouse.Web.Tests.Data;
-using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
+using AlpineSkiHouse.Web.Data;
+using AlpineSkiHouse.Web.Handlers;
+using AlpineSkiHouse.Web.Models;
+using AlpineSkiHouse.Web.Services;
+using AlpineSkiHouse.Web.Test.Data;
+using Moq;
 using Xunit;
 
-namespace AlpineSkiHouse.Web.Tests.Services
+namespace AlpineSkiHouse.Web.Test.Services
 {
     public class PassResolverTests
     {
@@ -27,7 +25,7 @@ namespace AlpineSkiHouse.Web.Tests.Services
         }
 
         [Fact]
-        public void Should_check_context_using_provided_card_id()
+        public async Task Should_check_context_using_provided_card_id()
         {
             var context = new PassContext(InMemoryDbContextOptionsFactory.Create<PassContext>());
             var cardId = 1337;
@@ -43,12 +41,10 @@ namespace AlpineSkiHouse.Web.Tests.Services
 
             var handler = new ResolvePassHandler(context, validator.Object);
 
-            handler.Handle(new Queries.ResolvePass { CardId = cardId });
+            await handler.Handle(new Queries.ResolvePass { CardId = cardId }, CancellationToken.None);
 
             validator.Verify(v => v.IsValid(It.Is<int>(i => i == verifyingPassId)), Times.Once);
             validator.Verify(v => v.IsValid(It.IsAny<int>()), Times.Exactly(3));
-
         }
-
     }
 }

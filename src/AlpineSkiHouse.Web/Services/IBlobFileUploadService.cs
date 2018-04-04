@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Threading.Tasks;
 
-namespace AlpineSkiHouse.Services
+namespace AlpineSkiHouse.Web.Services
 {
     public interface IBlobFileUploadService
     {

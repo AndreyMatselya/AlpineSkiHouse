@@ -1,9 +1,9 @@
-﻿using AlpineSkiHouse.Models;
+﻿using System.Threading.Tasks;
+using AlpineSkiHouse.Web.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using System.Threading.Tasks;
 
-namespace AlpineSkiHouse.Security
+namespace AlpineSkiHouse.Web.Security
 {
     public class EditSkiCardAuthorizationHandler :
         AuthorizationHandler<EditSkiCardAuthorizationRequirement, SkiCard>

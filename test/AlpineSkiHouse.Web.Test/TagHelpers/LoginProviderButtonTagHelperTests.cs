@@ -1,13 +1,11 @@
-﻿using AlpineSkiHouse.TagHelpers;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using AlpineSkiHouse.Web.TagHelpers;
 using Microsoft.AspNetCore.Http.Authentication;
 using Microsoft.AspNetCore.Razor.TagHelpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Xunit;
 
-namespace AlpineSkiHouse.Web.Tests.TagHelpers
+namespace AlpineSkiHouse.Web.Test.TagHelpers
 {
     public class LoginProviderButtonTagHelperTests
     {

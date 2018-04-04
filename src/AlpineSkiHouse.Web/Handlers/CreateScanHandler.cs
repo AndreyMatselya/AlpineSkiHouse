@@ -1,11 +1,13 @@
-﻿using AlpineSkiHouse.Data;
-using AlpineSkiHouse.Events;
-using AlpineSkiHouse.Models;
-using AlpineSkiHouse.Services;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using AlpineSkiHouse.Web.Command;
+using AlpineSkiHouse.Web.Data;
+using AlpineSkiHouse.Web.Events;
+using AlpineSkiHouse.Web.Models;
+using AlpineSkiHouse.Web.Services;
 using MediatR;
 
-namespace AlpineSkiHouse.Handlers
+namespace AlpineSkiHouse.Web.Handlers
 {
     public class CreateScanHandler : IRequestHandler<CreateScan, int>
     {
@@ -20,7 +22,7 @@ namespace AlpineSkiHouse.Handlers
             _mediator = mediator;
         }
 
-        public int Handle(CreateScan message)
+        public Task<int> Handle(CreateScan message, CancellationToken cancellationToken)
         {
             var scan = new Scan
             {
@@ -32,7 +34,7 @@ namespace AlpineSkiHouse.Handlers
             _passContext.SaveChanges();
 
             _mediator.Publish(new CardScanned { ScanId = scan.Id });            
-            return scan.Id;
+            return Task.FromResult(scan.Id);
         }
     }
 }

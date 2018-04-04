@@ -1,9 +1,6 @@
-﻿using AlpineSkiHouse.Data;
-using AlpineSkiHouse.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Linq;
+using AlpineSkiHouse.Web.Data;
+using AlpineSkiHouse.Web.Models;
 
 namespace AlpineSkiHouse.Web.Services
 {
@@ -52,12 +49,12 @@ namespace AlpineSkiHouse.Web.Services
             return true;
         }
 
-        private bool HasBeenPreviouslyActivatedToday(AlpineSkiHouse.Models.Pass pass)
+        private bool HasBeenPreviouslyActivatedToday(Pass pass)
         {
             return pass.Activations.OrderByDescending(x => x.Scan.DateTime).FirstOrDefault().Scan.DateTime > _dateService.Today();
         }
 
-        private bool IsOutsideOfDateRange(AlpineSkiHouse.Models.PassType passType)
+        private bool IsOutsideOfDateRange(PassType passType)
         {
             return passType.ValidFrom > _dateService.Now() || passType.ValidTo < _dateService.Now();
         }

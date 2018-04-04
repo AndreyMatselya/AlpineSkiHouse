@@ -1,12 +1,9 @@
-﻿using System;
-using System.Linq;
-using System.Collections.Generic;
+﻿using AlpineSkiHouse.Web.Configuration;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using AlpineSkiHouse.Configuration;
 
-namespace AlpineSkiHouse
+namespace AlpineSkiHouse.Web
 {
     public class AlpineConfigurationBuilder
     {
@@ -21,7 +18,7 @@ namespace AlpineSkiHouse
             if (env.IsDevelopment())
             {
                 // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
-                builder.AddUserSecrets();
+                builder.AddUserSecrets<Startup>();
 
                 // This will push telemetry data through Application Insights pipeline faster, allowing you to view results immediately.
                 builder.AddApplicationInsightsSettings(developerMode: true);

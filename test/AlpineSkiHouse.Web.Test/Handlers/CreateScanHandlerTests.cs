@@ -1,16 +1,18 @@
-﻿using AlpineSkiHouse.Data;
-using AlpineSkiHouse.Events;
-using AlpineSkiHouse.Handlers;
-using AlpineSkiHouse.Services;
+﻿using System;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using AlpineSkiHouse.Web.Command;
-using AlpineSkiHouse.Web.Tests.Data;
+using AlpineSkiHouse.Web.Data;
+using AlpineSkiHouse.Web.Events;
+using AlpineSkiHouse.Web.Handlers;
+using AlpineSkiHouse.Web.Services;
+using AlpineSkiHouse.Web.Test.Data;
 using MediatR;
 using Moq;
-using System;
-using System.Linq;
 using Xunit;
 
-namespace AlpineSkiHouse.Web.Tests.Handlers
+namespace AlpineSkiHouse.Web.Test.Handlers
 {
     public class CreateScanHandlerTests
     {
@@ -28,7 +30,7 @@ namespace AlpineSkiHouse.Web.Tests.Handlers
             }
 
             [Fact]
-            public void A_new_scan_is_saved_to_the_database()
+            public async Task A_new_scan_is_saved_to_the_database()
             {
                 using (PassContext context = GetContext())
                 {
@@ -38,7 +40,7 @@ namespace AlpineSkiHouse.Web.Tests.Handlers
                     Mock<IMediator> mediatorMock = new Mock<IMediator>();
 
                     var sut = new CreateScanHandler(context, dateService.Object, mediatorMock.Object);
-                    sut.Handle(createScan);
+                    await sut.Handle(createScan, CancellationToken.None);
 
                     Assert.Equal(1, context.Scans.Count());
                     var scanThatWasAdded = context.Scans.Single();
@@ -49,7 +51,7 @@ namespace AlpineSkiHouse.Web.Tests.Handlers
             }
 
             [Fact]
-            public void The_card_scanned_event_is_raised()
+            public async Task The_card_scanned_event_is_raised()
             {
                 using (PassContext context = GetContext())
                 {
@@ -59,9 +61,9 @@ namespace AlpineSkiHouse.Web.Tests.Handlers
                     Mock<IMediator> mediatorMock = new Mock<IMediator>();
 
                     var sut = new CreateScanHandler(context, dateService.Object, mediatorMock.Object);
-                    var scanId = sut.Handle(createScan);
+                    var scanId = await sut.Handle(createScan, CancellationToken.None);
 
-                    mediatorMock.Verify(m => m.Publish(It.Is<CardScanned>(c => c.ScanId == scanId)));
+                    mediatorMock.Verify(m => m.Publish(It.Is<CardScanned>(c => c.ScanId == scanId), It.IsAny<CancellationToken>()));
                 }
             }
         }

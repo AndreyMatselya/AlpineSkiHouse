@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace AlpineSkiHouse.Web.Migrations.Pass
+namespace AlpineSkiHouse.Web.Data.Migrations
 {
     public partial class InitialPassContext : Migration
     {

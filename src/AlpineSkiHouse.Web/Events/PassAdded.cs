@@ -1,7 +1,7 @@
-﻿using MediatR;
-using System;
+﻿using System;
+using MediatR;
 
-namespace AlpineSkiHouse.Events
+namespace AlpineSkiHouse.Web.Events
 {
     /// <summary>
     /// An event notification that occurs when a pass is added to a ski card

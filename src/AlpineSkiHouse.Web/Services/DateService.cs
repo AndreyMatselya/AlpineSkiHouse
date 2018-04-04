@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace AlpineSkiHouse.Services
+namespace AlpineSkiHouse.Web.Services
 {
     public class DateService : IDateService
     {
