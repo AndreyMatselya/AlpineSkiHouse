@@ -12,7 +12,7 @@ public static class InMemoryDbContextOptionsFactory
             .BuildServiceProvider();
             
         var builder = new DbContextOptionsBuilder<T>();
-        builder.UseInMemoryDatabase()
+        builder.UseInMemoryDatabase("Shared Database")
                 .UseInternalServiceProvider(serviceProvider);
 
         return builder.Options;

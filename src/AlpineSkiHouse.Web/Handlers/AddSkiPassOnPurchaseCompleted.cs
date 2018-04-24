@@ -48,7 +48,7 @@ namespace AlpineSkiHouse.Web.Handlers
                     CardId = newPass.CardId,
                     CreatedOn = newPass.CreatedOn
                 };
-                _bus.Publish(passAddedEvent);
+                await _bus.Publish(passAddedEvent, cancellationToken);
             }
         }
     }

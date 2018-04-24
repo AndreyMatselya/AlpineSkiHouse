@@ -21,6 +21,7 @@ using AlpineSkiHouse.Web.Data;
 using AlpineSkiHouse.Web.Models;
 using AlpineSkiHouse.Web.Security;
 using AlpineSkiHouse.Web.Services;
+using Microsoft.ApplicationInsights.AspNetCore.Extensions;
 
 namespace AlpineSkiHouse.Web
 {
@@ -105,7 +106,12 @@ namespace AlpineSkiHouse.Web
                     options.Filters.Add(new RequireHttpsAttribute());
                 });
             }
-            
+
+            services.AddApplicationInsightsTelemetry(new ApplicationInsightsServiceOptions()
+            {
+                DeveloperMode = true
+            });
+
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
@@ -129,8 +135,8 @@ namespace AlpineSkiHouse.Web
         {
             // Console logging
             // uncomment to use the default console logger
-            // var loggingConfig = Configuration.GetSection("Logging");
-            // loggerFactory.AddConsole(loggingConfig);
+            //var loggingConfig = Configuration.GetSection("Logging");
+            //loggerFactory.AddConsole(loggingConfig);
             // end of Console logging
 
             loggerFactory.AddDebug((className, logLevel) =>
@@ -154,7 +160,8 @@ namespace AlpineSkiHouse.Web
             applicationLifetime.ApplicationStopped.Register(Log.CloseAndFlush);
             // end of Serilog config
 
-            app.UseApplicationInsightsRequestTelemetry();
+            
+            //app.UseApplicationInsightsRequestTelemetry();
 
             if (env.IsDevelopment())
             {
@@ -167,7 +174,7 @@ namespace AlpineSkiHouse.Web
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            app.UseApplicationInsightsExceptionTelemetry();
+            //app.UseApplicationInsightsExceptionTelemetry();
 
             app.UseStaticFiles();
 
