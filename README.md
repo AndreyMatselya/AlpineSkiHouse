@@ -41,7 +41,7 @@ This is the example project for the Microsoft Press book ASP.Net Core Applicatio
 5. Run gulp
   ```
   gulp
-    ```
+  ```
   _Note:_ This step requires that gulp is installed globally. 
 
   ```
