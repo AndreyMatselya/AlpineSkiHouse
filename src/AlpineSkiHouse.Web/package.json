@@ -32,9 +32,6 @@
     "rimraf": "2.2.8",
     "typescript": "^2.9.1"
   },
-  "scripts": {
-    "postinstall": "npm install jspm -g" 
-  },
   "jspm": {
     "directories": {
       "baseURL": "js",
