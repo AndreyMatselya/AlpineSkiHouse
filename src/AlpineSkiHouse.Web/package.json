@@ -33,7 +33,7 @@
     "typescript": "^2.9.1"
   },
   "scripts": {
-    "postinstall": "npm install jspm" 
+    "postinstall": "npm install jspm -g" 
   },
   "jspm": {
     "directories": {
